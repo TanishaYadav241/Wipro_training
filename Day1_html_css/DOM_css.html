@@ -1,0 +1,56 @@
+<!-- DOM in JS is programing Interface for HTMl and XML documents  -->
+
+<!-- Below HTML is represented in a tree structure -->
+ <!-- Document : Root of the DOM tree
+  ├── html 
+       ├── head
+       │    ├── meta
+       │    ├── meta
+       │    └── title
+       └── body
+            ├── h1
+            └── ul
+                 ├── li
+                 ├── li
+                 └── li -->
+                 <!-- Element node represents an HTML element -->
+                  <!-- Attribute node represents an attribute of an element  id="main" , class="container" -->
+                     <!-- Text node represents the text content of an element or attribute -->
+                      <!-- Comment Node that represents comments in the HTML code -->
+<!-- Accessing DOM Elements we can use following Methods() -->
+<!-- Document.getElementById()  It selects the element by its ID -->
+ <!--<Document.GetElementByClassName()> It selects elements by their class name
+  <Document.getElementsByTagName()> It selects elements by their tag name
+   <Document.querySelector()> It selects the first element that matches a CSS selector
+    <Document.querySelectorAll()> It selects all elements that match a CSS selector -->
+
+<!-- Faculty (Olympus) 12:47
+FOLLOWING ARE THE STEPS FOR PERFORMING ABOVE DEMO based on DOM Manipulation 
+1. Access the DOM element using `document.getElementById("main")`.
+2. Change the text content of the paragraph using `textContent`.
+3. Modify the CSS properties of the element using `style.propertyName`. -->
+
+<html>
+    <head>
+        <title>Dom</title>
+    </head>
+    <body>
+        <div id=""main>
+            <h1>Tis is a DOM page</h1>
+            <p>This paragraph is inside the main div and we will change the text using DOM in JS</p>
+        </div>
+        <script>
+            // Accessing the element by its ID
+            let mainDiv = document.getElementByOD("main");
+            // here minDiv now references the div with id "main" and hence can be used to manipulate it.
+            // changing the text content of the paragraph inside the div
+            mainDiv.getElementsByTagName("p")[0].textContent = "The text is unchanged";
+        </script>
+        <!-- We can create a button to change the text -->
+         <button onclick="changeText()">Change Text</button>
+         <script>
+            function changeText() {
+                mainDiv.getElementsByTagName("p")[0].textContent = ""            }
+         </script>
+    </body>
+</html>
