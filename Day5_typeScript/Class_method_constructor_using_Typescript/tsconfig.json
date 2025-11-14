@@ -1,0 +1,14 @@
+// tsconfig.json will help us in compiling the typescript files present in the folder and its subfolders
+{
+  "compilerOptions": {
+    "target": "es6",                          
+    "module": "es6",                     
+    "strict": true,                           
+    "esModuleInterop": true,                  
+    "skipLibCheck": true,                      
+    "forceConsistentCasingInFileNames": true,
+    "outDir": "./dis",
+    "noEmitOnError": false
+  },
+  "include": ["./**/*.ts"]  // this will include all typescript files in the current folder and its subfolders
+}

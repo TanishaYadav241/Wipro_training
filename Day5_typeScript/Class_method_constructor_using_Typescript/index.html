@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Person and Student Demo</title>
+</head>
+<body>
+  <h2>Output:</h2>
+  <pre id="output"></pre>
+
+  <script>
+    class Person {
+      static counter = 0;
+      constructor(name, age, institute) {
+        this.name = name;
+        this.age = age;
+        this.institute = institute;
+        this.id = ++Person.counter;
+      }
+
+      greet() {
+        return `Hello, my name is ${this.name}, I am ${this.age} years old and I study at ${this.institute}. My ID is ${this.id}.`;
+      }
+
+      showId() {
+        return this.id;
+      }
+
+      static getCounter() {
+        return Person.counter;
+      }
+    }
+
+    class Student extends Person {
+      constructor(name, age, institute, skills = []) {
+        super(name, age, institute);
+        this.skills = skills;
+      }
+
+      getStudentDetails() {
+        return `${this.greet()} I currently have ${this.skills.length} skill(s).`;
+      }
+
+      addSkill(skill) {
+        this.skills.push(skill);
+        return `Skill "${skill}" added successfully.`;
+      }
+
+      display() {
+        return `My age is ${this.age} years and my skills are: ${this.skills.join(", ")}.`;
+      }
+
+      greet() {
+        return `Hello, my name is ${this.name}, I am ${this.age} years old and I study at ${this.institute}. I have the following skills: ${this.skills.join(", ")}.`;
+      }
+    }
+
+    // ---- Main Program ----
+    const person1 = new Person("Alice", 30, "Wonderland University");
+    const student1 = new Student("Bob", 20, "Builder Institute", ["JavaScript", "TypeScript"]);
+    student1.addSkill("React");
+
+    let output = "";
+    output += person1.greet() + "\n";
+    output += "Person ID: " + person1.showId() + "\n";
+    output += "---------------------------\n";
+    output += student1.getStudentDetails() + "\n";
+    output += student1.display() + "\n";
+    output += "Student ID: " + student1.showId() + "\n";
+    output += "---------------------------\n";
+    output += "Total Persons Created: " + Person.getCounter();
+
+    document.getElementById("output").innerText = output;
+  </script>
+</body>
+</html>
