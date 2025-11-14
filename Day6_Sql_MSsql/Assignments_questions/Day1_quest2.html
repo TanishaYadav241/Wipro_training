@@ -1,0 +1,457 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Spring Flowers School - Student Portal</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+        }
+
+        /* Navigation */
+        .navbar {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+        }
+
+        .navbar-brand {
+            font-weight: bold;
+            color: white !important;
+            font-size: 1.5rem;
+        }
+
+        .nav-link {
+            color: white !important;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            margin: 0 10px;
+        }
+
+        .nav-link:hover {
+            transform: translateY(-2px);
+            color: #ffd700 !important;
+        }
+
+        /* Main Container */
+        .main-container {
+            padding: 30px 15px;
+        }
+
+        /* ID Card Styles */
+        .card-container {
+            max-width: 600px;
+            margin: 0 auto 30px;
+            background: white;
+            border: 2px solid #333;
+            padding: 20px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+            border-radius: 10px;
+        }
+
+        .header {
+            background: linear-gradient(135deg, #fdc897 0%, #fec897 100%);
+            border: 2px solid #333;
+            padding: 20px;
+            margin-bottom: 20px;
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 15px;
+        }
+
+        .logo {
+            padding: 10px 20px;
+            background: white;
+            border: 2px solid #333;
+            color: #333;
+            font-size: 18px;
+            font-weight: bold;
+            border-radius: 5px;
+        }
+
+        .school-name {
+            font-size: 20px;
+            font-weight: bold;
+            color: #333;
+        }
+
+        .content {
+            background: linear-gradient(135deg, #fec897 0%, #ffdb9e 100%);
+            border: 2px solid #333;
+            padding: 30px;
+            border-radius: 8px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 25px;
+        }
+
+        .student-image {
+            width: 150px;
+            height: 150px;
+            background: rgba(255, 196, 140, 0.5);
+            border: 3px solid #333;
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: #333;
+            font-size: 16px;
+            font-weight: 600;
+            flex-shrink: 0;
+        }
+
+        .student-info {
+            text-align: center;
+            font-size: 16px;
+            color: #333;
+            width: 100%;
+        }
+
+        .info-row {
+            display: flex;
+            justify-content: space-between;
+            padding: 10px 0;
+            border-bottom: 1px solid rgba(51, 51, 51, 0.2);
+        }
+
+        .info-label {
+            font-weight: bold;
+        }
+
+        /* Timetable Section */
+        .timetable-section {
+            display: none;
+            max-width: 1200px;
+            margin: 0 auto;
+            background: white;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+        }
+
+        .timetable-section.active {
+            display: block;
+        }
+
+        .timetable-title {
+            text-align: center;
+            color: #667eea;
+            margin-bottom: 30px;
+            font-weight: bold;
+        }
+
+        .table {
+            border: 2px solid #667eea;
+        }
+
+        .table thead {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+        }
+
+        .table tbody tr:hover {
+            background-color: rgba(102, 126, 234, 0.1);
+            transition: all 0.3s ease;
+        }
+
+        .time-slot {
+            font-weight: bold;
+            color: #667eea;
+        }
+
+        /* Buttons */
+        .btn-custom {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            border: none;
+            color: white;
+            padding: 12px 30px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+        }
+
+        .btn-custom:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3);
+            color: white;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .card-container {
+                width: 100%;
+                padding: 15px;
+            }
+
+            .header {
+                flex-direction: column;
+                text-align: center;
+            }
+
+            .content {
+                padding: 20px;
+            }
+
+            .student-image {
+                width: 120px;
+                height: 120px;
+            }
+
+            .info-row {
+                flex-direction: column;
+                gap: 5px;
+                text-align: left;
+            }
+
+            .timetable-section {
+                padding: 15px;
+                overflow-x: auto;
+            }
+
+            .table {
+                font-size: 14px;
+            }
+
+            .navbar-brand {
+                font-size: 1.2rem;
+            }
+        }
+
+        @media (max-width: 576px) {
+            .student-info {
+                font-size: 14px;
+            }
+
+            .school-name {
+                font-size: 16px;
+            }
+
+            .logo {
+                font-size: 14px;
+            }
+        }
+
+        /* Animation */
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .fade-in {
+            animation: fadeIn 0.5s ease;
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar navbar-expand-lg navbar-dark">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="#">
+                <i class="fas fa-graduation-cap"></i> Spring Flowers School
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="#" onclick="showSection('idcard')">
+                            <i class="fas fa-id-card"></i> ID Card
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#" onclick="showSection('timetable')">
+                            <i class="fas fa-calendar-alt"></i> TimeTable
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">
+                            <i class="fas fa-book"></i> Courses
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">
+                            <i class="fas fa-chart-line"></i> Results
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Main Container -->
+    <div class="main-container">
+        <!-- ID Card Section -->
+        <div id="idcard-section" class="fade-in">
+            <div class="card-container">
+                <div class="header">
+                    <div class="logo">SFS</div>
+                    <div class="school-name">Spring Flowers School</div>
+                </div>
+                <div class="content">
+                    <div class="student-image">
+                        <i class="fas fa-user fa-3x"></i>
+                    </div>
+                    <div class="student-info">
+                        <h4 class="mb-3">Student ID Card</h4>
+                        <div class="info-row">
+                            <span class="info-label">Name:</span>
+                            <span>Alex Johnson</span>
+                        </div>
+                        <div class="info-row">
+                            <span class="info-label">Student ID:</span>
+                            <span>SFS-2024-001</span>
+                        </div>
+                        <div class="info-row">
+                            <span class="info-label">Class:</span>
+                            <span>10th Grade</span>
+                        </div>
+                        <div class="info-row">
+                            <span class="info-label">Section:</span>
+                            <span>A</span>
+                        </div>
+                        <div class="info-row">
+                            <span class="info-label">Academic Year:</span>
+                            <span>2024-2025</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Quick Action Button -->
+            <div class="text-center mt-4">
+                <button class="btn btn-custom btn-lg" onclick="showSection('timetable')">
+                    <i class="fas fa-calendar-alt"></i> View My TimeTable
+                </button>
+            </div>
+        </div>
+
+        <!-- Timetable Section -->
+        <div id="timetable-section" class="timetable-section">
+            <h2 class="timetable-title">
+                <i class="fas fa-calendar-week"></i> Weekly TimeTable - Class 10A
+            </h2>
+            
+            <div class="table-responsive">
+                <table class="table table-bordered table-hover">
+                    <thead>
+                        <tr>
+                            <th>Time</th>
+                            <th>Monday</th>
+                            <th>Tuesday</th>
+                            <th>Wednesday</th>
+                            <th>Thursday</th>
+                            <th>Friday</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td class="time-slot">08:00 - 08:45</td>
+                            <td>Mathematics</td>
+                            <td>English</td>
+                            <td>Science</td>
+                            <td>Mathematics</td>
+                            <td>Social Studies</td>
+                        </tr>
+                        <tr>
+                            <td class="time-slot">08:45 - 09:30</td>
+                            <td>English</td>
+                            <td>Mathematics</td>
+                            <td>Physical Ed.</td>
+                            <td>English</td>
+                            <td>Science</td>
+                        </tr>
+                        <tr>
+                            <td class="time-slot">09:30 - 10:15</td>
+                            <td>Science</td>
+                            <td>Social Studies</td>
+                            <td>Mathematics</td>
+                            <td>Computer Sci.</td>
+                            <td>English</td>
+                        </tr>
+                        <tr class="table-warning">
+                            <td class="time-slot">10:15 - 10:30</td>
+                            <td colspan="5" class="text-center"><strong>BREAK</strong></td>
+                        </tr>
+                        <tr>
+                            <td class="time-slot">10:30 - 11:15</td>
+                            <td>Social Studies</td>
+                            <td>Science</td>
+                            <td>English</td>
+                            <td>Art</td>
+                            <td>Mathematics</td>
+                        </tr>
+                        <tr>
+                            <td class="time-slot">11:15 - 12:00</td>
+                            <td>Computer Sci.</td>
+                            <td>Physical Ed.</td>
+                            <td>Social Studies</td>
+                            <td>Science</td>
+                            <td>Music</td>
+                        </tr>
+                        <tr class="table-info">
+                            <td class="time-slot">12:00 - 12:45</td>
+                            <td colspan="5" class="text-center"><strong>LUNCH BREAK</strong></td>
+                        </tr>
+                        <tr>
+                            <td class="time-slot">12:45 - 01:30</td>
+                            <td>Art</td>
+                            <td>Computer Sci.</td>
+                            <td>Music</td>
+                            <td>Physical Ed.</td>
+                            <td>Library</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <div class="text-center mt-4">
+                <button class="btn btn-custom btn-lg" onclick="showSection('idcard')">
+                    <i class="fas fa-arrow-left"></i> Back to ID Card
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
+    <script>
+        function showSection(section) {
+            const idCardSection = document.getElementById('idcard-section');
+            const timetableSection = document.getElementById('timetable-section');
+
+            if (section === 'timetable') {
+                idCardSection.style.display = 'none';
+                timetableSection.classList.add('active');
+                timetableSection.classList.add('fade-in');
+            } else {
+                timetableSection.classList.remove('active');
+                idCardSection.style.display = 'block';
+                idCardSection.classList.add('fade-in');
+            }
+
+            // Scroll to top
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+    </script>
+</body>
+</html>

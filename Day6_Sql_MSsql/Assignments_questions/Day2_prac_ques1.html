@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Spring Flowers School - Student Portal</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <!-- Login/Register Page -->
+  <div id="loginPage" class="page active">
+    <h1>🌸 Spring Flowers School 🌸</h1>
+    <div class="form-container">
+      <h2>Login</h2>
+      <input type="text" id="username" placeholder="Enter Username">
+      <input type="password" id="password" placeholder="Enter Password">
+      <button onclick="login()">Login</button>
+      <p>Don't have an account? <a href="#" onclick="showRegister()">Register here</a></p>
+    </div>
+  </div>
+
+  <!-- Register Page -->
+  <div id="registerPage" class="page">
+    <h1>Register</h1>
+    <div class="form-container">
+      <input type="text" id="newUsername" placeholder="Create Username">
+      <input type="password" id="newPassword" placeholder="Create Password">
+      <button onclick="register()">Register</button>
+      <p>Already have an account? <a href="#" onclick="showLogin()">Login here</a></p>
+    </div>
+  </div>
+
+  <!-- Welcome Page -->
+  <div id="welcomePage" class="page">
+    <h1>Welcome <span id="displayUser"></span> 🎉</h1>
+    <p>Manage your school activities online.</p>
+    <button onclick="showMonthly()">View Monthly Activities</button>
+    <button onclick="logout()">Logout</button>
+  </div>
+
+  <!-- Monthly Activity Page -->
+  <div id="monthlyPage" class="page">
+    <h1>📅 Monthly Activities</h1>
+    <label for="subjectSelect">Choose Subject:</label>
+    <select id="subjectSelect" onchange="showActivities()">
+      <option value="">--Select Subject--</option>
+      <option value="Maths">Maths</option>
+      <option value="Science">Science</option>
+      <option value="English">English</option>
+      <option value="Social Science">Social Science</option>
+      <option value="Hindi">Hindi</option>
+
+    </select>
+
+    <div id="activityList"></div>
+    <button onclick="goBack()">Back</button>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>

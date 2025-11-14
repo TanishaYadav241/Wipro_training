@@ -1,0 +1,35 @@
+Scenario Background
+You are working as a Database Developer for EduPro Learning, a university that wants to manage its course enrollments, students, and instructors efficiently.
+The current data is stored in spreadsheets, and you have been asked to design a normalized database schema, populate it with data, and write queries to generate reports for the academic department.
+User Stories and Tasks
+User Story 1 — Database Design & Normalization
+As a database developer, I need to design a database schema that eliminates redundancy and maintains data integrity.
+Tasks:
+Analyze the following unstructured dataset:
+StudentIDﾠStudentNameﾠCourseNameﾠInstructorNameﾠDepartmentﾠGrade
+S101ﾠAsha GuptaﾠDatabase SystemsﾠDr. MehtaﾠComputer ScienceﾠA
+S102ﾠRaj VermaﾠData StructuresﾠDr. SharmaﾠComputer ScienceﾠB
+S101ﾠAsha GuptaﾠData StructuresﾠDr. SharmaﾠComputer ScienceﾠA
+
+Apply normalization (up to Third Normal Form - 3NF) and design separate tables:
+Student(StudentID, StudentName)
+Course(CourseID, CourseName, DeptID)
+Instructor(InstructorID, InstructorName, DeptID)
+Department(DeptID, DeptName)
+Enrollment(StudentID, CourseID, InstructorID, Grade)
+Define primary and foreign keys appropriately.
+Concepts Covered: Normalization, DDL, Primary and Foreign Keys
+User Story 2 — Data Population and Joins
+As an academic coordinator, I want to view student-course relationships and instructor assignments using SQL joins.
+
+
+
+
+Tasks:
+Insert sample records in each table (minimum 5 students, 5 courses, 3 instructors, 2 departments).
+Write queries for the following:
+Retrieve a list of students with their enrolled course names and instructors.
+Display all courses along with their department names (use INNER JOIN).
+Retrieve all students and the courses they are enrolled in, including those who have not yet been assigned a grade (use LEFT JOIN).
+List instructors who currently have no students assigned (use RIGHT JOIN).
+Concepts Covered: DML, INNER/LEFT/RIGHT Joins

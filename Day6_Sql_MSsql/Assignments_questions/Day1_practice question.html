@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Student ID Card</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            background: linear-gradient(135deg, #fcfcfe 0%, #fcfbfe 100%);
+        }
+
+        .card-container {
+            width: 600px;
+            background: white;
+            border: 1px solid #333;
+            padding: 2px 10px 30px 6px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+        }
+
+        .header {
+            background: linear-gradient(135deg, #fdc897 0%, #fec897 100%);
+            border: 1px solid #333;
+            padding: 10px;
+            margin-bottom: 14px;
+        }
+
+        .logo {
+            display: inline-block;
+            padding: 10px 20px;
+            background: white;
+            border: 1px solid #333;
+            color: #333;
+            font-size: 14px;
+        }
+
+        .content {
+            background: linear-gradient(135deg, #fec897 0%, #fec897 100%);
+            border: 1px solid #333;
+            padding: 20px;
+            min-height: 300px;
+            position: relative;
+        }
+
+        .student-image {
+            width: 190px;
+            height: 130px;
+            background: rgba(255, 196, 140, 0.5);
+            border: 1px solid #333;
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: #333;
+            flex-shrink: 0;
+            position: absolute;
+            top: 20px;
+            left: 30px;
+            font-size: 14px;
+        }
+
+        .student-info {
+            text-align: center;
+            font-size: 14px;
+            color: #333;
+            position: absolute;
+            top: 65%;
+            left: 45%;
+            transform: translate(-50%, -50%);
+        }
+
+        @media (max-width: 650px) {
+            .card-container {
+                width: 90%;
+                margin: 20px;
+            }
+
+            .content {
+                flex-direction: column;
+                gap: 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="card-container">
+        <div class="header">
+            <div class="logo">Logo</div>
+        </div>
+        <div class="content">
+            <div class="student-image">
+                Student Image
+            </div>
+            <div class="student-info">
+                Student Information
+            </div>
+        </div>
+    </div>
+</body>
+</html>
