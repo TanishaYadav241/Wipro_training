@@ -1,0 +1,15 @@
+
+{
+"bonus": {
+"compoundIndex": { "collection": "Books", "index": { "genre": 1, "publicationYear": -1 } },
+"storedAggregation": {
+"name": "topRatedAuthorByAvgBook",
+"pipeline": [
+{ "$unwind": "$ratings" },
+{ "$group": { "_id": { "$concat": ["$authorId", ""] }, "avgRating": { "$avg": "$ratings.score" } } },
+{ "$sort": { "avgRating": -1 } },
+{ "$limit": 1 }
+]
+}
+}
+}

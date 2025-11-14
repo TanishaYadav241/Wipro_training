@@ -1,0 +1,124 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <title>JSX & JS Concepts - Single File</title>
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <style>
+    body { font-family: Arial, sans-serif; background:#f5f7fb; margin:16px; }
+    .container { max-width:800px; margin:0 auto; }
+    .card { background:white; border-radius:8px; padding:12px; box-shadow:0 6px 18px rgba(0,0,0,0.06); margin-bottom:12px; }
+    .btn { margin:6px 8px 6px 0; padding:8px 12px; border-radius:6px; cursor:pointer; border:none; }
+    .btn-primary { background:#2563eb; color:white; }
+    .btn-green { background:#10b981; color:white; }
+    .btn-gray { background:#64748b; color:white; }
+    .btn-orange { background:#f97316; color:white; }
+    .btn-red { background:#ef4444; color:white; }
+    ul { padding-left:18px; }
+  </style>
+  <!-- React (UMD) -->
+  <script crossorigin src="https://unpkg.com/react@18/umd/react.development.js"></script>
+  <script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
+  <!-- Babel for in-browser JSX transpile -->
+  <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+</head>
+<body>
+  <div class="container">
+    <h1>JSX & JavaScript Concepts (Single File)</h1>
+    <div id="root" class="card"></div>
+    <p style="font-size:13px;color:#6b7280">Open DevTools → Console to view logs from Logger / Hoisting / Constructor demos.</p>
+  </div>
+
+  <script type="text/babel" data-presets="react">
+    const { useState } = React;
+
+    function NumberList({ numbers }) {
+      return (
+        <div>
+          <h3>Number List</h3>
+          {numbers.length === 0 ? <p>No numbers.</p> : (
+            <ul>{numbers.map((n, i) => <li key={i}>{n.value}</li>)}</ul>
+          )}
+        </div>
+      );
+    }
+
+    function FilterControls({ numbers, setNumbers, original }) {
+      const showEven = () => setNumbers(original.filter(n => n.value % 2 === 0));
+      const double = () => setNumbers(numbers.map(n => ({ value: n.value * 2 })));
+      const reset = () => setNumbers(original.slice());
+      return (
+        <div style={{marginTop:12}}>
+          <button className="btn btn-green" onClick={showEven}>Show Even</button>
+          <button className="btn btn-primary" onClick={double}>Double</button>
+          <button className="btn btn-gray" onClick={reset}>Reset</button>
+        </div>
+      );
+    }
+
+    function Logger({ numbers }) {
+      const run = () => {
+        console.log("Logger -> values:");
+        numbers.forEach(n => console.log(n.value));
+        alert("Logged to console.");
+      };
+      return <div style={{marginTop:12}}><button className="btn btn-primary" onClick={run}>Log to Console</button></div>;
+    }
+
+    function HoistingDemo() {
+      const run = () => {
+        console.log("Hoisting demo start");
+        console.log("a before declaration:", a); // undefined because var hoisted
+        var a = 7;
+        console.log("a after declaration:", a);
+
+        // function declaration is hoisted
+        hoisted();
+        function hoisted(){ console.log("hoisted function called"); }
+
+        try {
+          funcExpr(); // will throw because funcExpr is undefined at this point
+        } catch (e) {
+          console.log("Calling funcExpr before assignment throws:", e && e.message);
+        }
+        var funcExpr = function(){ console.log("funcExpr now called"); };
+        funcExpr();
+
+        console.log("Hoisting demo end");
+        alert("Hoisting demo run — see console.");
+      };
+      return <div style={{marginTop:12}}><button className="btn btn-orange" onClick={run}>Run Hoisting Demo</button></div>;
+    }
+
+    function ConstructorDemo() {
+      class Car {
+        constructor(brand){ this.brand = brand; }
+        display(){ console.log("This car is a", this.brand); }
+      }
+      const run = () => {
+        const c = new Car("Tesla");
+        c.display();
+        alert("Constructor demo run — see console.");
+      };
+      return <div style={{marginTop:12}}><button className="btn btn-red" onClick={run}>Run Constructor Demo</button></div>;
+    }
+
+    function App() {
+      const initial = [{value:1},{value:2},{value:3},{value:4},{value:5}];
+      const [numbers, setNumbers] = useState(initial.slice());
+      return (
+        <div>
+          <NumberList numbers={numbers} />
+          <FilterControls numbers={numbers} setNumbers={setNumbers} original={initial} />
+          <Logger numbers={numbers} />
+          <HoistingDemo />
+          <ConstructorDemo />
+        </div>
+      );
+    }
+
+    const root = ReactDOM.createRoot(document.getElementById('root'));
+    root.render(<App />);
+  </script>
+</body>
+</html>

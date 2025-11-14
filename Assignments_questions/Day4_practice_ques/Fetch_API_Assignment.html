@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Blog & Todo Platform</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>📝 Blog & Todo Platform</h1>
+            <p>Manage your posts and tasks effortlessly</p>
+        </header>
+
+        <div class="main-content">
+            <!-- Posts Section -->
+            <div class="section">
+                <div class="section-header">
+                    <h2><span class="icon">📰</span> Blog Posts</h2>
+                    <div class="header-buttons">
+                        <button class="add-btn" id="add-post-btn">➕ Add Post</button>
+                        <button class="refresh-btn" id="refresh-posts-btn">🔄 Refresh</button>
+                    </div>
+                </div>
+
+                <!-- Add Post Form -->
+                <div id="add-post-form" class="add-form hidden">
+                    <h3>Create New Blog Post</h3>
+                    <input type="text" id="post-title-input" placeholder="Enter post title..." maxlength="100">
+                    <textarea id="post-body-input" placeholder="Write your post content..." rows="4"></textarea>
+                    <div class="form-buttons">
+                        <button class="submit-btn" id="submit-post-btn">✓ Publish Post</button>
+                        <button class="cancel-btn" id="cancel-post-btn">✗ Cancel</button>
+                    </div>
+                </div>
+
+                <div id="posts-container">
+                    <div class="loading">
+                        <div class="spinner"></div>
+                        Loading posts...
+                    </div>
+                </div>
+            </div>
+
+            <!-- Todos Section -->
+            <div class="section">
+                <div class="section-header">
+                    <h2><span class="icon">✅</span> Todo List</h2>
+                    <div class="header-buttons">
+                        <button class="add-btn" id="add-todo-btn">➕ Add Todo</button>
+                        <button class="refresh-btn" id="refresh-todos-btn">🔄 Refresh</button>
+                    </div>
+                </div>
+
+                <!-- Add Todo Form -->
+                <div id="add-todo-form" class="add-form hidden">
+                    <h3>Create New Todo</h3>
+                    <input type="text" id="todo-input" placeholder="Enter todo task..." maxlength="100">
+                    <div class="form-buttons">
+                        <button class="submit-btn" id="submit-todo-btn">✓ Add Task</button>
+                        <button class="cancel-btn" id="cancel-todo-btn">✗ Cancel</button>
+                    </div>
+                </div>
+
+                <div class="filter-controls">
+                    <button class="filter-btn active" data-filter="all">All</button>
+                    <button class="filter-btn" data-filter="active">Active</button>
+                    <button class="filter-btn" data-filter="completed">Completed</button>
+                </div>
+                <div id="todos-container">
+                    <div class="loading">
+                        <div class="spinner"></div>
+                        Loading todos...
+                    </div>
+                </div>
+                <div class="stats" id="todo-stats"></div>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
