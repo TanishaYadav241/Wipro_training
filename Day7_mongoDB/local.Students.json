@@ -1,0 +1,22 @@
+[{
+  "_id": {
+    "$oid": "6908581de03fe0c3afebee3e"
+  },
+  "StudentID": "S102",
+  "StudentName": "Raj Verma",
+  "Course": "Data Structures",
+  "Instructor": "Dr. Sharma",
+  "Department": "Computer Science",
+  "Grade": "B"
+},
+{
+  "_id": {
+    "$oid": "690858c9e03fe0c3afebee41"
+  },
+  "StudentID": "S101",
+  "StudentName": "Asha Gupta",
+  "Course": "DatabaseSystems",
+  "Instructor": "Dr. Mehta",
+  "Department": "Computer Science",
+  "Grade": "B"
+}]
